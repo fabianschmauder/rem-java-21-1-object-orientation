@@ -2,6 +2,8 @@ package de.neuefische.objectorientation.db;
 
 import de.neuefische.objectorientation.model.Student;
 
+import java.util.Arrays;
+
 public class StudentDb {
 
     private Student[] students;
@@ -52,5 +54,25 @@ public class StudentDb {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentDb studentDb = (StudentDb) o;
+        return Arrays.equals(students, studentDb.students);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(students);
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDb{" +
+                "students=" + Arrays.toString(students) +
+                '}';
     }
 }
