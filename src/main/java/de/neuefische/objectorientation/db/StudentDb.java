@@ -21,6 +21,10 @@ public class StudentDb {
     }
 
     public void remove(String id) {
+        if(!contains(id)) {
+            throw new IllegalArgumentException("Student with id " + id +" not found!");
+        }
+
         this.students.remove(id);
     }
 

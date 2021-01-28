@@ -129,4 +129,26 @@ class StudentDbTest {
         };
         assertEquals(new StudentDb(expectedStudents), studentDb);
     }
+
+
+    @Test()
+    public void removeUnknownIdShouldThrowException(){
+        //GIVEN
+        Student[] givenStudents = {
+                new Student("some-existing-id", "some-existing", "some-existing"),
+                new Student("some-other-existing-id", "some-other-existing", "some-other-existing"),
+                new Student("some-id", "some-name", "some-subject")
+        };
+        StudentDb studentDb = new StudentDb(givenStudents);
+
+        //WHEN
+
+        try{
+            studentDb.remove("unknown-id");
+            fail("Exception was not thrown");
+        }catch (IllegalArgumentException e){
+            assertEquals("Student with id unknown-id not found!", e.getMessage());
+        }
+
+    }
 }

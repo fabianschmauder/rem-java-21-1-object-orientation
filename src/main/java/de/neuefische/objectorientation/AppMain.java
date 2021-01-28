@@ -13,9 +13,11 @@ public class AppMain {
         StudentDb db = new StudentDb(new Student[0]);
         db.add(new Student("2", "Frank", "sport"));
 
-        List<Student> list = db.list();
-        list.add(new Student("3","Jochen","test"));
-
+        try {
+            db.remove("3");
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception);
+        }
     }
 
     private static void printAllStudents(Student[] students) {
