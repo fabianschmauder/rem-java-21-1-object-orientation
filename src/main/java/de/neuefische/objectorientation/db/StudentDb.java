@@ -2,58 +2,45 @@ package de.neuefische.objectorientation.db;
 
 import de.neuefische.objectorientation.model.Student;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class StudentDb {
 
-    private Student[] students;
+    private final ArrayList<Student> students = new ArrayList<>();
 
-    public StudentDb(Student[] students) {
-        this.students = students;
+    public StudentDb(Student[] initialStudents) {
+        for (Student student : initialStudents) {
+            students.add(student);
+        }
     }
 
 
     public void add(Student student) {
-        Student[] updatedStudents = new Student[students.length + 1];
-
-        for (int i = 0; i < students.length; i++) {
-            updatedStudents[i] = students[i];
-        }
-
-        updatedStudents[updatedStudents.length - 1] = student;
-
-        this.students = updatedStudents;
+        this.students.add(student);
     }
 
 
     public void remove(String id) {
-        if (!contains(id)) {
-            return;
+        Student student = findById(id);
+        if(student != null){
+            this.students.remove(student);
         }
-
-        Student[] updatedData = new Student[students.length - 1];
-
-        boolean removed = false;
-
-        for (int i = 0; i < students.length; i++) {
-            if (students[i].getId().equals(id)) {
-                removed = true;
-            } else {
-                int updatedIndex = removed ? i - 1 : i;
-                updatedData[updatedIndex] = students[i];
-            }
-        }
-
-        students = updatedData;
     }
 
-    public boolean contains(String id) {
-        for (Student student : students) {
-            if (student.getId().equals(id)) {
-                return true;
+    private Student findById(String id){
+        for (Student student : this.students) {
+            if(student.getId().equals(id)){
+               return  student;
             }
         }
-        return false;
+        return null;
+    }
+
+
+    public boolean contains(String id) {
+        Student student = findById(id);
+        return student != null;
     }
 
     @Override
@@ -61,18 +48,18 @@ public class StudentDb {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentDb studentDb = (StudentDb) o;
-        return Arrays.equals(students, studentDb.students);
+        return Objects.equals(students, studentDb.students);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(students);
+        return Objects.hash(students);
     }
 
     @Override
     public String toString() {
         return "StudentDb{" +
-                "students=" + Arrays.toString(students) +
+                "students=" + students +
                 '}';
     }
 }
