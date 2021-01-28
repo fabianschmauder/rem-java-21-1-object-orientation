@@ -1,8 +1,6 @@
 package de.neuefische.objectorientation;
 
 import de.neuefische.objectorientation.db.StudentDb;
-import de.neuefische.objectorientation.model.ComputerScienceStudent;
-import de.neuefische.objectorientation.model.DancingStudent;
 import de.neuefische.objectorientation.model.Student;
 
 public class AppMain {
@@ -10,16 +8,12 @@ public class AppMain {
 
     public static void main(String[] args) {
 
-        DancingStudent dancingStudent = new DancingStudent("Frank", "1");
-        System.out.println(dancingStudent.getName());
+        StudentDb studentDb = new StudentDb(new Student[0]);
 
-        ComputerScienceStudent computerScienceStudent = new ComputerScienceStudent("Jochen", "c#", "2");
-        System.out.println(computerScienceStudent.getName());
+        Student student = new Student("1", "Frank", "Sport");
+        studentDb.add(student);
 
-        StudentDb studentDb = new StudentDb(new DancingStudent[0]);
-        studentDb.add(dancingStudent);
-
-        Student[] students = {computerScienceStudent, dancingStudent};
+        Student[] students = {student};
         printAllStudents(students);
 
     }

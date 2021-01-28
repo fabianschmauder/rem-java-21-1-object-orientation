@@ -1,13 +1,12 @@
 package de.neuefische.objectorientation.db;
 
-import de.neuefische.objectorientation.model.DancingStudent;
 import de.neuefische.objectorientation.model.Student;
 
 public class StudentDb {
 
     private Student[] students;
 
-    public StudentDb(DancingStudent[] students) {
+    public StudentDb(Student[] students) {
         this.students = students;
     }
 
