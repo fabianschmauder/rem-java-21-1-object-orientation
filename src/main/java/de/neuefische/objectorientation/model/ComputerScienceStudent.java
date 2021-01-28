@@ -2,13 +2,14 @@ package de.neuefische.objectorientation.model;
 
 import java.util.Objects;
 
-public class ComputerScienceStudent implements Student , Nerd {
+public class ComputerScienceStudent extends Student implements Nerd {
 
     private String name;
     private String firstProgrammingLanguage;
     private String id;
 
     public ComputerScienceStudent(String name, String firstProgrammingLanguage, String id) {
+        super(id,name, "it");
         this.name = name;
         this.firstProgrammingLanguage = firstProgrammingLanguage;
         this.id = id;
@@ -27,8 +28,10 @@ public class ComputerScienceStudent implements Student , Nerd {
         this.id = id;
     }
 
-    public String getSubject() {
-        return "it";
+
+    @Override
+    public String[] determineModuls() {
+        return new String[0];
     }
 
 

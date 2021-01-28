@@ -1,10 +1,36 @@
 package de.neuefische.objectorientation.model;
 
-public interface Student {
+public abstract class Student {
 
-    String getId();
+    private String id;
+    private String name;
+    private String subject;
 
-    String getName();
+    public Student(String id, String name, String subject) {
+        this.id = id;
+        this.name = name;
+        this.subject = subject;
+    }
 
-    String getSubject();
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public abstract String[] determineModuls();
 }

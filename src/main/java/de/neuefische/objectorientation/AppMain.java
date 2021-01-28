@@ -10,8 +10,12 @@ public class AppMain {
 
     public static void main(String[] args) {
 
-        DancingStudent dancingStudent = new DancingStudent("Frank", "1");
+        DancingStudent dancingStudent = new DancingStudent("1","Frank" , 10);
         System.out.println(dancingStudent.getName());
+
+        dancingStudent.getDancingSkillLevel();
+
+
 
         ComputerScienceStudent computerScienceStudent = new ComputerScienceStudent("Jochen", "c#", "2");
         System.out.println(computerScienceStudent.getName());
