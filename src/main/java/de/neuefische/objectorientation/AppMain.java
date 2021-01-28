@@ -3,18 +3,18 @@ package de.neuefische.objectorientation;
 import de.neuefische.objectorientation.db.StudentDb;
 import de.neuefische.objectorientation.model.Student;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AppMain {
 
 
     public static void main(String[] args) {
+        StudentDb db = new StudentDb(new Student[0]);
+        db.add(new Student("2", "Frank", "sport"));
 
-        StudentDb studentDb = new StudentDb(new Student[0]);
-
-        Student student = new Student("1", "Frank", "Sport");
-        studentDb.add(student);
-
-        Student[] students = {student};
-        printAllStudents(students);
+        List<Student> list = db.list();
+        list.add(new Student("3","Jochen","test"));
 
     }
 

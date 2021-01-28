@@ -2,45 +2,34 @@ package de.neuefische.objectorientation.db;
 
 import de.neuefische.objectorientation.model.Student;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class StudentDb {
 
-    private final ArrayList<Student> students = new ArrayList<>();
+    private final HashMap<String, Student> students = new HashMap<>();
 
     public StudentDb(Student[] initialStudents) {
         for (Student student : initialStudents) {
-            students.add(student);
+            add(student);
         }
     }
-
 
     public void add(Student student) {
-        this.students.add(student);
+        this.students.put(student.getId(),student);
     }
-
 
     public void remove(String id) {
-        Student student = findById(id);
-        if(student != null){
-            this.students.remove(student);
-        }
+        this.students.remove(id);
     }
-
-    private Student findById(String id){
-        for (Student student : this.students) {
-            if(student.getId().equals(id)){
-               return  student;
-            }
-        }
-        return null;
-    }
-
 
     public boolean contains(String id) {
-        Student student = findById(id);
-        return student != null;
+        return students.containsKey(id);
+    }
+
+    public List<Student> list(){
+        return List.copyOf(students.values());
     }
 
     @Override
